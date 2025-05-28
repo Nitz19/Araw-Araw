@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just for You 💖</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #fff0f5, #ffe4e1);
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+      color: #5a005a;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.5em;
+    }
+
+    video {
+      border: 5px solid #ffb6c1;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 182, 193, 0.7);
+      max-width: 90%;
+      margin-bottom: 20px;
+    }
+
+    #nextBtn {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: not-allowed;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    #nextBtn.enabled {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    .hint {
+      font-size: 0.9em;
+      color: #a0522d;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hi Lovey 💕</h1>
+  <p>I made this just for you. Watch closely...</p>
+
+  <video id="myVideo" controls autoplay>
+    <source src="assets/arawaraw.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <br>
+  <button id="nextBtn" disabled>Next ➡️</button>
+  <p class="hint" id="hintText">Please watch for a moment... 💖</p>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const nextBtn = document.getElementById('nextBtn');
+    const hint = document.getElementById('hintText');
+
+    video.addEventListener('timeupdate', () => {
+      if (video.currentTime >= 20 && nextBtn.disabled) {
+        nextBtn.disabled = false;
+        nextBtn.classList.add('enabled');
+        hint.innerText = "You can now continue 💌";
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (!nextBtn.disabled) {
+        window.location.href = "message.html";
+      }
+    });
+  </script>
+</body>
+</html>
